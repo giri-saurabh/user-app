@@ -18,7 +18,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/addNotice"
+            android:id="@+id/viewEvent"
             app:cardElevation="5dp">
 
             <LinearLayout
@@ -59,7 +59,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/addImages"
+            android:id="@+id/viewImage"
             app:cardElevation="5dp">
 
             <LinearLayout
@@ -109,7 +109,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/addMaterials"
+            android:id="@+id/viewMaterial"
             app:cardElevation="5dp">
 
             <LinearLayout
@@ -150,7 +150,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/faculty"
+            android:id="@+id/viewFaculty"
             app:cardElevation="5dp">
 
             <LinearLayout
