@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.userfyp;
 
 import org.junit.Test;
 

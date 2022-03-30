@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.gallery;
+package com.example.userfyp.ui.gallery;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.R;
+import com.example.userfyp.R;
 
 
 public class galleryFragment extends Fragment {

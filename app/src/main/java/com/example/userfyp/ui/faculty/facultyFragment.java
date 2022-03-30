@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.faculty;
+package com.example.userfyp.ui.faculty;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.R;
+import com.example.userfyp.R;
 
 
 public class facultyFragment extends Fragment {

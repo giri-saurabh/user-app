@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    >
+    tools:context=".registration"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:src="@drawable/logo"
             android:paddingBottom="2dp"/>
 
@@ -34,7 +33,7 @@
             android:text="HERALD COLLEGE"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="22dp"
             tools:ignore="MissingConstraints"/>
 
     </LinearLayout>
@@ -49,7 +48,29 @@
             android:layout_marginTop="60dp"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
+            android:hint="Full Name"
+            android:inputType="text"
+            android:textSize="24sp"
+            android:ems="10"
+            android:id="@+id/fullname"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="30dp"
+            android:inputType="text"
+            android:hint="Age"
+            android:id="@+id/age"
+            android:textSize="24sp"
+            android:ems="10"/>
+
+        <EditText
+            android:layout_marginTop="30dp"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:textSize="24sp"
             android:ems="10"
@@ -66,39 +87,27 @@
             android:id="@+id/password"
             android:textSize="24sp"
             android:ems="10"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="20dp">
+        android:paddingTop="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:text="Login"
-            android:id="@+id/login"
-            android:backgroundTint="#90EE90"
+            android:layout_height="wrap_content"
+            android:id="@+id/regBtn"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:backgroundTint="#013220"
             />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:text="Register"
-            android:id="@+id/register"
-            android:backgroundTint="#013220"/>
-
-    </LinearLayout>
 
 
 </LinearLayout>
