@@ -9,6 +9,9 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Button register;
+    private Button login;
+
 
 
     @Override
@@ -16,11 +19,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        register = findViewById(R.id.register);
+        register.setOnClickListener(this);
+        login = findViewById(R.id.login);
+        login.setOnClickListener(this);
+
 
     }
 
     @Override
     public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()){
+            case R.id.register:
+                intent = new Intent(MainActivity.this, registration.class);
+                startActivity(intent);
+                break;
+            case R.id.login:
+                intent = new Intent(MainActivity.this, screen.class);
+                startActivity(intent);
+                break;
+        }
 
     }
 
