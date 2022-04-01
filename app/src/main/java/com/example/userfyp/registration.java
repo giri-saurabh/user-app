@@ -2,7 +2,9 @@ package com.example.userfyp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.DragStartHelper;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,86 +27,82 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.regex.Pattern;
 
-public class registration extends AppCompatActivity implements View.OnClickListener{
+public class registration extends AppCompatActivity{
 
-    private FirebaseAuth mAuth;
-    private EditText fullname, email, age, password;
+    private EditText regName, regAge, regEmail, regPassword;
+    private Button regBtn;
     private TextView header;
     private ImageView logo;
-    private Button regBtn;
-    ProgressBar pd;
-    private DatabaseReference reference;
-    private StorageReference storageReference;
 
+    private FirebaseAuth auth;
 
+    private String name, age, email, pass;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        fullname = findViewById(R.id.fullname);
-        email = findViewById(R.id.email);
-        age = findViewById(R.id.age);
-        password = findViewById(R.id.password);
+        auth = FirebaseAuth.getInstance();
+
+        regName = findViewById(R.id.regName);
+        regAge = findViewById(R.id.regAge);
+        regEmail = findViewById(R.id.regEmail);
+        regPassword = findViewById(R.id.regPassword);
         regBtn = findViewById(R.id.regBtn);
-        regBtn.setOnClickListener(this);
+        header = findViewById(R.id.header);
+        regBtn.setOnClickListener((View.OnClickListener) this);
 
-        mAuth = FirebaseAuth.getInstance();
+        regBtn.setOnClickListener((view) -> { validateUser(); });
 
+        header.setOnClickListener((view) -> {
+            startActivity(new Intent(registration.this, MainActivity.class));
+            finish();
+        });
+    }
 
+    private void validateUser() {
+        
+        name = regName.getText().toString();
+        email = regEmail.getText().toString();
+        age = regAge.getText().toString();
+        pass = regPassword.getText().toString();
+        
+        if (name.isEmpty() || email.isEmpty() || age.isEmpty() || pass.isEmpty()){
+            
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            
+        }else{
+            registerUser();
+        }
     }
 
     @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()){
-            case R.id.regBtn:
-                regUser();
+    protected void onStart() {
+        super.onStart();
+        if (auth.getCurrentUser() != null){
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 
-    private void regUser() {
-        String regEmail = email.getText().toString().trim();
-        String regName = fullname.getText().toString().trim();
-        String regPassword = password.getText().toString().trim();
-        String regAge = age.getText().toString().trim();
-        if (regName.isEmpty()){
-            fullname.setError("This field cannot be empty");
-            fullname.requestFocus();
-        }else if( regEmail.isEmpty() ){
-            email.setError("This field cannot be empty");
-            email.requestFocus();
-        }else if ( regAge.isEmpty()){
-            age.setError("Please specify your age");
-            age.requestFocus();
-        }else if( regPassword.isEmpty()){
-            password.setError("Password cannot be empty");
-            password.requestFocus();
-        }else if (Patterns.EMAIL_ADDRESS.matcher(regEmail).matches()){
-            email.setError("Email already in use");
-            email.requestFocus();
-        }else if (password.length() < 6){
-            password.setError("Password must be minimum 6-characters long");
-            password.requestFocus();
-            return;
-        }
+    private void registerUser() {
 
-        pd.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(regEmail,regPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            registeredUser user = new registeredUser(fullname, age, email);
+                            Toast.makeText(registration.this, "User created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(registration.this, MainActivity.class));
+                            finish();
+                        }else {
+                            Toast.makeText(registration.this, "Error :"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                });
 
-            }
-        });
 
     }
+
+
 }

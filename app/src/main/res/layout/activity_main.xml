@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
+            android:id="@+id/loginLogo"
             android:paddingBottom="2dp"/>
 
     </LinearLayout>
@@ -33,6 +34,7 @@
             android:layout_height="36dp"
             android:text="HERALD COLLEGE"
             android:gravity="center"
+            android:id="@+id/loginHeader"
             android:textStyle="bold"
             android:textSize="30dp"
             tools:ignore="MissingConstraints"/>
@@ -53,7 +55,7 @@
             android:inputType="textEmailAddress"
             android:textSize="24sp"
             android:ems="10"
-            android:id="@+id/email"
+            android:id="@+id/logEmail"
             tools:ignore="MissingConstraints" />
 
         <EditText
@@ -63,7 +65,7 @@
             android:layout_marginTop="30dp"
             android:inputType="textPassword"
             android:hint="Password"
-            android:id="@+id/password"
+            android:id="@+id/logPass"
             android:textSize="24sp"
             android:ems="10"/>
     </LinearLayout>
