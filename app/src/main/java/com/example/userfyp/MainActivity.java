@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private EditText logEmail, logPass;
     private Button login, register;
@@ -30,17 +30,18 @@ public class MainActivity extends AppCompatActivity  {
         logEmail = findViewById(R.id.logEmail);
         logPass = findViewById(R.id.logPass);
         login = findViewById(R.id.login);
-
         register = findViewById(R.id.register);
-        register.setOnClickListener((view) ->{
-            startActivity(new Intent(MainActivity.this, registration.class));
-            finish();
-        });
+
 
         auth = FirebaseAuth.getInstance();
 
         login.setOnClickListener((view)-> {
             validateUser();
+        });
+
+        register.setOnClickListener((view) -> {
+            startActivity(new Intent(MainActivity.this, registration.class));
+            finish();
         });
     }
 
@@ -89,6 +90,5 @@ public class MainActivity extends AppCompatActivity  {
                 });
 
     }
-
 }
 

@@ -93,15 +93,13 @@ public class registration extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(registration.this, "User created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(registration.this, MainActivity.class));
+                            startActivity(new Intent(registration.this, screen.class));
                             finish();
                         }else {
                             Toast.makeText(registration.this, "Error :"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
-
     }
 
 
